@@ -61,7 +61,4 @@ sudo npm install
 mkdir data
 ````
 
-Browse to <ip address>:3000
-
-
-npm install
+Browse to ````<ip address>````:3000
