@@ -66,4 +66,116 @@ sudo npm install
 mkdir data
 ````
 
-Browse to ````<ip address>````:3000
+````
+npm start
+````
+Browse to ````<ip address>````:3000 - verify we get Express welcome page
+
+- Change package.json, adding mongodb and monk
+
+````
+npm install
+````
+
+- Add routes and view for helloworld
+
+````
+npm start
+````
+Browse to ````<ip address>````:3000/helloworld
+
+Add MongoDB database
+````
+sudo apt-get install mongodb
+````
+(If on windows, ````mongod --dbpath <path>/node-tutorial/exercises/nodetest1/data/````
+
+````
+coderdojo@ubuntu:~$ mongo
+MongoDB shell version: 2.6.3
+connecting to: test
+
+
+> show dbs
+admin  (empty)
+local  0.078GB
+
+
+> use nodetest1
+switched to db nodetest1
+
+
+> db.usercollection.insert({ "username" : "ninja", "email" : "ninja@coderdojo.org.nz" })
+WriteResult({ "nInserted" : 1 })
+
+
+> db.usercollection.find().pretty()
+{
+	"_id" : ObjectId("5466bb2df53ee4cfd1954edc"),
+	"username" : "ninja",
+	"email" : "ninja@coderdojo.org.nz"
+}
+
+
+> show dbs
+admin      (empty)
+local      0.078GB
+nodetest1  0.078GB
+
+
+> newstuff = [{ "username" : "ninja2", "email" : "ninja2@coderdojo.org.nz" }, { "username" : "ninja3", "email" : "ninja3@coderdojo.org.nz" }]
+[
+	{
+		"username" : "ninja2",
+		"email" : "ninja2@coderdojo.org.nz"
+	},
+	{
+		"username" : "ninja3",
+		"email" : "ninja3@coderdojo.org.nz"
+	}
+]
+
+
+> db.usercollection.insert(newstuff);
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+
+> db.usercollection.find().pretty()
+{
+	"_id" : ObjectId("5466bb2df53ee4cfd1954edc"),
+	"username" : "ninja",
+	"email" : "ninja@coderdojo.org.nz"
+}
+{
+	"_id" : ObjectId("5466bbd6f53ee4cfd1954edd"),
+	"username" : "ninja2",
+	"email" : "ninja2@coderdojo.org.nz"
+}
+{
+	"_id" : ObjectId("5466bbd6f53ee4cfd1954ede"),
+	"username" : "ninja3",
+	"email" : "ninja3@coderdojo.org.nz"
+}
+
+
+
+````
+
+Our data will look like:
+
+````
+{
+    "_id" : 1234,
+    "username" : "ninja",
+    "email" : "ninja@coderdojo.org.nz"
+}
+````
